@@ -1,0 +1,47 @@
+body {
+    color: #05386B;
+}
+
+.glassmorphism {
+    background: rgba( 255, 255, 255, 0.25);
+    box-shadow: 0 4px 8px 0 rgba(31, 119, 135, 0.37);
+    backdrop-filter: blur( 4px);
+    -webkit-backdrop-filter: blur( 4px);
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18);
+}
+
+.btn-white {
+    background: rgba( 255, 255, 255, 0.25);
+    box-shadow: 0 1px 1px 0 rgba(31, 119, 135, 0.37);
+    backdrop-filter: blur( 4px);
+    -webkit-backdrop-filter: blur( 4px);
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18);
+    border-radius: 100px;
+    color: #05386B;
+    font-weight: bold;
+}
+
+.btn-white:hover {
+    background: rgba( 255, 255, 255, 0.8);
+}
+
+.form-control {
+    background-color: rgba( 31, 42, 55, 0.1);
+    border-color: #a0ffcb;
+    color: #fff;
+}
+
+.form-control:hover {
+    border-color: #fff;
+}
+
+.form-control:focus {
+    background-color: rgba( 31, 42, 55, 0.4);
+    color: #fff;
+}
+
+.form-control::placeholder {
+    color: #a0ffcb;
+}
