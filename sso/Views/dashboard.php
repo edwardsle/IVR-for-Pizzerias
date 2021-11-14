@@ -1,27 +1,3 @@
-<?php
-include_once '../vendor/autoload.php';
-
-use \Firebase\JWT\JWT;
-
-session_start();
-//    echo($_SESSION['jwt']);
-
-if ($_SESSION['jwt']) {
-    try {
-        $decoded = JWT::decode($_SESSION['jwt'], $key, array('HS256'));
-        echo(var_dump($decoded));
-        echo ($decoded->{'exp'});
-        $currentTime = time();
-        echo($currentTime);
-        if($currentTime > $decoded->{'exp'}) {
-            header("Location sso");
-        }
-    } catch (Exception $e) {
-        echo ("Decode fail");
-    }
-}
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -89,6 +65,19 @@ if ($_SESSION['jwt']) {
                             <h1 class="display-6">Dashboard</h1>
                         </div>
                     </div>
+                </div>
+
+                <div class="col">
+                    <form action="" method="get">
+                    <div class="card glassmorphism mx-5">
+                        <div class="card-body text-center">
+                            <img src="public/img/dashboard.svg" alt="Go to order online" height="100" />
+                        </div>
+                        <div class="card-body text-center">
+                            <button type="submit" name="logout" class="btn btn-white btn-sm">Logout</button>
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

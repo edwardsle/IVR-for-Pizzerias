@@ -52,19 +52,23 @@
     }
 
     public function create() {
-      echo("Email: $this->email");
-      echo("Name: $this->name");
-      echo("Password: $this->password");
-      $stmt = $this->pdo->prepare("INSERT INTO credentials (email,password,name) VALUES (:email,:password,:name)");
+      $stmt = $this->pdo->prepare("SELECT * FROM credentials WHERE email = :email");
       $stmt->bindValue(':email', $this->email);
-      $stmt->bindValue(':password',$this->password);
-      $stmt->bindValue(':name', $this->name);
-      if($stmt->execute()){
-        http_response_code(200);
-        return array("message"=> "User was successfully registered");
+      $stmt->execute();
+      $row = $stmt->fetchObject();
+      // echo("Before email check");
+      if(!isset($row->email)){
+        $stmt = $this->pdo->prepare("INSERT INTO credentials (email,password,name) VALUES (:email,:password,:name)");
+        $stmt->bindValue(':email', $this->email);
+        $stmt->bindValue(':password',$this->password);
+        $stmt->bindValue(':name', $this->name);
+        if($stmt->execute()){
+          return array("message"=> "User was successfully registered", 'status'=> true);
+        } else {
+          return array("message"=> "Unable to register the user", 'status'=> false);
+        }
       } else {
-        http_response_code(400);
-        return array("message"=> "Unable to register the user");
+        return array("message"=> "Email already been register", 'status'=> false);
       }
     }
   }

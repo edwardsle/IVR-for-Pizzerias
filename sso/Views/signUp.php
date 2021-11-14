@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="row dflex my-4">
                                     <div class="col-12 col-md-6 d-grid">
-                                        <button type="submit" class="btn btn-white btn-sm">Login</button>
+                                        <button name="redirectLogin" class="btn btn-white btn-sm">Login</button>
                                     </div>
                                     <div class="col-12 col-md-6 d-grid">
                                         <button type="submit" name="signup" class="btn btn-white btn-sm">Submit</button>

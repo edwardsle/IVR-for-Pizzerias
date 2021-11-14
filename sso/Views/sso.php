@@ -61,7 +61,7 @@
                                         <button type="submit" name="login" class="btn btn-white btn-sm">Submit</button>
                                     </div>
                                     <div class="col-12 col-md-6 d-grid">
-                                        <button type="submit" class="btn btn-white btn-sm">Sign Up</button>
+                                        <button type="submit" name="redirectSignUp" class="btn btn-white btn-sm">Sign Up</button>
                                     </div>
                                 </div>
                             </form>
