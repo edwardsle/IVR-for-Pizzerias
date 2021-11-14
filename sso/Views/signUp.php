@@ -9,7 +9,7 @@
     <link href="public/css/sso.css" rel="stylesheet">
     <link href="public/css/animated-bg.css" rel="stylesheet">
 
-    <title>Single Sign-On | SSO</title>
+    <title>Single Sign-Up | SSO</title>
 </head>
 
 <body>
@@ -34,13 +34,13 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                     <div class="card glassmorphism">
                         <div class="card-body">
-                            <h5 class="card-title">Single Sign-On</h5>
-                            <p class="small">Log in once and access all services.</p>
+                            <h5 class="card-title">Single Sign-Up</h5>
+                            <p class="small">Sign up once and access all services.</p>
                         </div>
                         <div class="card-body">
                             <?php if($error) { ?>
                             <div class="alert alert-danger" role="alert" style="opacity:0.9;">
-                                <?php echo($error)?>
+                                Invalid Credentials!
                             </div>
                             <?php } ?>
                             <form action="" method="post">
@@ -51,6 +51,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-2">
+                                    <div class="col-12 col-md-4">Full Name</div>
+                                    <div class="col-12 col-md-8">
+                                        <input type="name" class="form-control form-control-sm" id="name" name="name" placeholder="John Doe">
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
                                     <div class="col-12 col-md-4">Password</div>
                                     <div class="col-12 col-md-8">
                                         <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Password">
@@ -58,10 +64,10 @@
                                 </div>
                                 <div class="row dflex my-4">
                                     <div class="col-12 col-md-6 d-grid">
-                                        <button type="submit" name="login" class="btn btn-white btn-sm">Submit</button>
+                                        <button type="submit" class="btn btn-white btn-sm">Login</button>
                                     </div>
                                     <div class="col-12 col-md-6 d-grid">
-                                        <button type="submit" class="btn btn-white btn-sm">Sign Up</button>
+                                        <button type="submit" name="signup" class="btn btn-white btn-sm">Submit</button>
                                     </div>
                                 </div>
                             </form>

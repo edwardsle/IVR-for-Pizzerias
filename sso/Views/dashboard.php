@@ -1,3 +1,27 @@
+<?php
+include_once '../vendor/autoload.php';
+
+use \Firebase\JWT\JWT;
+
+session_start();
+//    echo($_SESSION['jwt']);
+
+if ($_SESSION['jwt']) {
+    try {
+        $decoded = JWT::decode($_SESSION['jwt'], $key, array('HS256'));
+        echo(var_dump($decoded));
+        echo ($decoded->{'exp'});
+        $currentTime = time();
+        echo($currentTime);
+        if($currentTime > $decoded->{'exp'}) {
+            header("Location sso");
+        }
+    } catch (Exception $e) {
+        echo ("Decode fail");
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -75,15 +99,15 @@
         let kitchen = document.getElementById('kitchen');
         let dashboard = document.getElementById('dashboard');
 
-        web.addEventListener('click', ()=> {
+        web.addEventListener('click', () => {
             window.location.replace("https://shop.edwardsle.com");
         });
 
-        kitchen.addEventListener('click', ()=> {
+        kitchen.addEventListener('click', () => {
             window.location.replace("https://ws.edwardsle.com");
         });
 
-        dashboard.addEventListener('click', ()=> {
+        dashboard.addEventListener('click', () => {
             window.location.replace("https://admin.edwardsle.com");
         });
     </script>
