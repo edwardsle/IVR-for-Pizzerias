@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2021 at 07:40 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Nov 22, 2021 at 02:00 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,8 @@ CREATE TABLE `credentials` (
 --
 
 INSERT INTO `credentials` (`email`, `password`, `name`, `role`, `ip`, `token`, `expires`, `created_at`) VALUES
-('admin@cs597.com', '@123Abc', 'Ed Le', 1, '', NULL, '2021-09-28 07:37:49', '2021-09-28 07:37:49');
+('admin@cs597.com', '@123Abc', 'Ed Le', 1, '', NULL, '2021-09-28 07:37:49', '2021-09-28 07:37:49'),
+('alextran9613@gmail.com', '$2y$10$804YMoWTZH20G7w9skB0QOEb5/Z/A3Cr5XdqRFkMmQGvR2dzidIUa', 'Alex Tran', 0, '', NULL, '2021-11-14 19:29:54', '2021-11-14 19:29:54');
 
 -- --------------------------------------------------------
 
@@ -89,10 +90,17 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
   `source` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` int(11) NOT NULL,
-  `ispaid` int(11) NOT NULL DEFAULT 0,
+  `phone` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ispaid` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `status`, `source`, `phone`, `ispaid`, `created`) VALUES
+(12, 'prepare', 'online', '7145894027', 'null', '2021-11-21 02:02:12');
 
 -- --------------------------------------------------------
 
@@ -101,14 +109,21 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `pizzas` (
-  `id` int(11) NOT NULL,
-  `orderid` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `crust` int(11) NOT NULL,
-  `size` int(11) NOT NULL,
-  `sauce` int(11) NOT NULL,
+  `id` int(255) NOT NULL,
+  `orderid` int(255) NOT NULL,
+  `status` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `crust` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `size` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `sauce` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `toppings` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pizzas`
+--
+
+INSERT INTO `pizzas` (`id`, `orderid`, `status`, `crust`, `size`, `sauce`, `toppings`) VALUES
+(21, 12, 'prepare', 'thin', 'medium', 'bbq', 'jalapeno, mushroom, black-olives, pineapple, ');
 
 -- --------------------------------------------------------
 
@@ -242,10 +257,16 @@ ALTER TABLE `hours`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `pizzas`
 --
 ALTER TABLE `pizzas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `sauces`
