@@ -1,0 +1,20 @@
+.logo {
+    font-weight: 400;
+}
+
+.logo strong{
+    font-weight: 500;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #5d657b;
+    font-weight: 500;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    color: #f77f00;
+    background-color: rgba(247, 127, 0, 0.1);
+    border: 1px solid rgba(247, 127, 0, 0.8);
+    border-radius: 5px;
+}
