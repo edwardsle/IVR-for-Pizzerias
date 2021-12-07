@@ -24,7 +24,6 @@ if(isset($_POST['data']))
 				$toppings .= ", ";
 			}
 			$add_pizza = "INSERT INTO pizzas (orderid,status,crust,size,sauce,toppings) VALUES ('$order_id','$status','$crust','$size','$sauce','$toppings')";
-			print_r($add_pizza);
 			if(!mysqli_query($conn,$add_pizza)){
 				echo "Pizza did not get added to db";
 			}
