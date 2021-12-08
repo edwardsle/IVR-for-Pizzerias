@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2021 at 02:00 AM
+-- Generation Time: Dec 08, 2021 at 05:17 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -74,11 +74,24 @@ INSERT INTO `crusts` (`id`, `name`, `price`) VALUES
 
 CREATE TABLE `hours` (
   `id` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `day` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `timein` int(11) NOT NULL,
-  `timeout` int(11) NOT NULL
+  `timein` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `timeout` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `hours`
+--
+
+INSERT INTO `hours` (`id`, `status`, `day`, `timein`, `timeout`) VALUES
+(1, 'unknown', 'mon', '09:00', '17:01'),
+(2, 'unknown', 'tue', '09:02', '17:02'),
+(3, 'unknown', 'wed', '09:03', '17:03'),
+(4, 'unknown', 'thu', '09:04', '17:04'),
+(5, 'unknown', 'fri', '09:05', '17:05'),
+(6, 'unknown', 'sat', '09:06', '17:06'),
+(7, 'unknown', 'sun', '09:07', '17:07');
 
 -- --------------------------------------------------------
 
@@ -100,7 +113,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `status`, `source`, `phone`, `ispaid`, `created`) VALUES
-(12, 'prepare', 'online', '7145894027', 'null', '2021-11-21 02:02:12');
+(12, 'prepare', 'online', '7145894027', 'null', '2021-11-21 02:02:12'),
+(13, 'ready', 'online', '7145894027', 'null', '2021-12-07 03:43:10'),
+(14, 'prepare', 'online', '7145894027', 'null', '2021-12-07 03:43:31'),
+(15, 'prepare', 'online', '7145894027', 'null', '2021-12-07 03:43:50');
 
 -- --------------------------------------------------------
 
@@ -123,7 +139,13 @@ CREATE TABLE `pizzas` (
 --
 
 INSERT INTO `pizzas` (`id`, `orderid`, `status`, `crust`, `size`, `sauce`, `toppings`) VALUES
-(21, 12, 'prepare', 'thin', 'medium', 'bbq', 'jalapeno, mushroom, black-olives, pineapple, ');
+(21, 12, 'prepare', 'thin', 'medium', 'bbq', 'jalapeno, mushroom, black-olives, pineapple, '),
+(22, 13, 'prepare', 'thin', 'medium', 'bbq', 'pepperoni, beef, mushroom, black-olives, '),
+(23, 13, 'prepare', 'thin', 'large', 'alfredo', 'ham, chicken, jalapeno, mushroom, '),
+(24, 13, 'prepare', 'regular', 'medium', 'regular', 'pepperoni, ham, chicken, mushroom, black-olives, '),
+(25, 14, 'prepare', 'thin', 'medium', 'bbq', 'beef, ham, chicken, jalapeno, mushroom, pineapple, '),
+(26, 15, 'prepare', 'regular', 'small', 'regular', 'pepperoni, beef, jalapeno, mushroom, '),
+(27, 15, 'prepare', 'thin', 'medium', 'bbq', 'pepperoni, beef, ham, chicken, jalapeno, mushroom, black-olives, pineapple, ');
 
 -- --------------------------------------------------------
 
@@ -254,19 +276,19 @@ ALTER TABLE `crusts`
 -- AUTO_INCREMENT for table `hours`
 --
 ALTER TABLE `hours`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pizzas`
 --
 ALTER TABLE `pizzas`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `sauces`
