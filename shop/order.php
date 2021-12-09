@@ -10,7 +10,7 @@ if(isset($_POST['data']))
 	$phone = $_POST['phone'];
 	$ispaid = 'null';
 	$order_id = strtotime(date('Y-m-d H:s:i'));
-	$add_order = "INSERT INTO orders (id, status, source, phone, ispaid) VALUES ('$order_id','$status','$source','$phone','$ispaid')";
+	$add_order = "INSERT INTO orders (id, status, source, phone, ispaid) VALUES ('$order_id','active','$source','$phone','$ispaid')";
 	
 	if(mysqli_query($conn,$add_order)){
 		foreach($data as $pizza){
