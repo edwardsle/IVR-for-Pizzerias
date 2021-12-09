@@ -5,7 +5,7 @@ if(isset($_POST['data']))
 {
 	$data = $_POST['data'];
 	
-	$status = 'prepare';
+	$status = 'unprepared';
 	$source = 'online';
 	$phone = $_POST['phone'];
 	$ispaid = 'null';
