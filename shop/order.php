@@ -5,15 +5,14 @@ if(isset($_POST['data']))
 {
 	$data = $_POST['data'];
 	
-	$status = 'prepare';
+	$status = 'unprepared';
 	$source = 'online';
 	$phone = $_POST['phone'];
 	$ispaid = 'null';
-
-	$add_order = "INSERT INTO orders (status, source, phone, ispaid) VALUES ('$status','$source','$phone','$ispaid')";
+	$order_id = strtotime(date('Y-m-d H:s:i'));
+	$add_order = "INSERT INTO orders (id, status, source, phone, ispaid) VALUES ('$order_id','active','$source','$phone','$ispaid')";
 	
 	if(mysqli_query($conn,$add_order)){
-		$order_id = mysqli_insert_id($conn);
 		foreach($data as $pizza){
 			$size = $pizza['size'];
 			$crust = $pizza['crust'];
