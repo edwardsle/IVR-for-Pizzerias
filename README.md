@@ -1,6 +1,6 @@
 # cs597 Project
 ## Demo:
-### SSO: https://sso.edwardsle.com/
+### Single Sign On: https://sso.edwardsle.com/
 ### Website: https://shop.edwardsle.com/
 ### Phone Gateway: +1 (714) 660-6060
 ### Kitchen Screen: https://ws.edwardsle.com/
