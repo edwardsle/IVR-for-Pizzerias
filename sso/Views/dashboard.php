@@ -71,10 +71,7 @@
                     <form action="" method="get">
                     <div class="card glassmorphism mx-5">
                         <div class="card-body text-center">
-                            <img src="public/img/dashboard.svg" alt="Go to order online" height="100" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="submit" name="logout" class="btn btn-white btn-sm">Logout</button>
+                            <button type="submit" name="logout" class="btn btn-white btn-sm"><strong>Logout</strong></button>
                         </div>
                     </div>
                     </form>

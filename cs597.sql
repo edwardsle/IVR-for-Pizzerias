@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 05:17 AM
+-- Generation Time: Dec 15, 2021 at 07:26 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,8 +43,8 @@ CREATE TABLE `credentials` (
 --
 
 INSERT INTO `credentials` (`email`, `password`, `name`, `role`, `ip`, `token`, `expires`, `created_at`) VALUES
-('admin@cs597.com', '@123Abc', 'Ed Le', 1, '', NULL, '2021-09-28 07:37:49', '2021-09-28 07:37:49'),
-('alextran9613@gmail.com', '$2y$10$804YMoWTZH20G7w9skB0QOEb5/Z/A3Cr5XdqRFkMmQGvR2dzidIUa', 'Alex Tran', 0, '', NULL, '2021-11-14 19:29:54', '2021-11-14 19:29:54');
+('admin1@cs597.com', '@123Abc', 'Ed Le', 1, '', NULL, '2021-09-28 07:37:49', '2021-09-28 07:37:49'),
+('admin@cs597.com', '$2y$10$2pMKNRVhZShEEtXuRkKDJ.WWmoe462X8vQQvP6NefchuxmXeIG/jm', 'Ed', 1, '', NULL, '2021-12-10 18:41:32', '2021-12-10 18:41:32');
 
 -- --------------------------------------------------------
 
@@ -74,10 +74,10 @@ INSERT INTO `crusts` (`id`, `name`, `price`) VALUES
 
 CREATE TABLE `hours` (
   `id` int(11) NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   `day` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `timein` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  `timeout` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `timein` time NOT NULL,
+  `timeout` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -85,13 +85,13 @@ CREATE TABLE `hours` (
 --
 
 INSERT INTO `hours` (`id`, `status`, `day`, `timein`, `timeout`) VALUES
-(1, 'unknown', 'mon', '09:00', '17:01'),
-(2, 'unknown', 'tue', '09:02', '17:02'),
-(3, 'unknown', 'wed', '09:03', '17:03'),
-(4, 'unknown', 'thu', '09:04', '17:04'),
-(5, 'unknown', 'fri', '09:05', '17:05'),
-(6, 'unknown', 'sat', '09:06', '17:06'),
-(7, 'unknown', 'sun', '09:07', '17:07');
+(1, 1, 'Monday', '00:00:00', '23:59:00'),
+(2, 1, 'Tuesday', '00:00:00', '23:59:00'),
+(3, 1, 'Wednesday', '00:00:00', '23:59:00'),
+(4, 1, 'Thursday', '00:00:00', '23:59:00'),
+(5, 1, 'Friday', '00:00:00', '23:59:00'),
+(6, 1, 'Saturday', '00:00:00', '23:59:00'),
+(7, 1, 'Sunday', '00:00:00', '23:59:00');
 
 -- --------------------------------------------------------
 
@@ -101,10 +101,10 @@ INSERT INTO `hours` (`id`, `status`, `day`, `timein`, `timeout`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
+  `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
   `source` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `ispaid` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `phone` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `ispaid` int(11) NOT NULL DEFAULT 0,
   `created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -113,10 +113,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `status`, `source`, `phone`, `ispaid`, `created`) VALUES
-(12, 'prepare', 'online', '7145894027', 'null', '2021-11-21 02:02:12'),
-(13, 'ready', 'online', '7145894027', 'null', '2021-12-07 03:43:10'),
-(14, 'prepare', 'online', '7145894027', 'null', '2021-12-07 03:43:31'),
-(15, 'prepare', 'online', '7145894027', 'null', '2021-12-07 03:43:50');
+(1639027459, 'unprepared', 'ivr', '7146035555', 1, '2021-12-09 05:14:34');
 
 -- --------------------------------------------------------
 
@@ -125,12 +122,12 @@ INSERT INTO `orders` (`id`, `status`, `source`, `phone`, `ispaid`, `created`) VA
 --
 
 CREATE TABLE `pizzas` (
-  `id` int(255) NOT NULL,
-  `orderid` int(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `orderid` int(11) NOT NULL,
   `status` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  `crust` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  `size` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  `sauce` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `crust` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `size` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `sauce` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   `toppings` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -139,13 +136,7 @@ CREATE TABLE `pizzas` (
 --
 
 INSERT INTO `pizzas` (`id`, `orderid`, `status`, `crust`, `size`, `sauce`, `toppings`) VALUES
-(21, 12, 'prepare', 'thin', 'medium', 'bbq', 'jalapeno, mushroom, black-olives, pineapple, '),
-(22, 13, 'prepare', 'thin', 'medium', 'bbq', 'pepperoni, beef, mushroom, black-olives, '),
-(23, 13, 'prepare', 'thin', 'large', 'alfredo', 'ham, chicken, jalapeno, mushroom, '),
-(24, 13, 'prepare', 'regular', 'medium', 'regular', 'pepperoni, ham, chicken, mushroom, black-olives, '),
-(25, 14, 'prepare', 'thin', 'medium', 'bbq', 'beef, ham, chicken, jalapeno, mushroom, pineapple, '),
-(26, 15, 'prepare', 'regular', 'small', 'regular', 'pepperoni, beef, jalapeno, mushroom, '),
-(27, 15, 'prepare', 'thin', 'medium', 'bbq', 'pepperoni, beef, ham, chicken, jalapeno, mushroom, black-olives, pineapple, ');
+(1, 1639027459, 'unprepared', 'regular', 'medium', 'regular', 'peperoni, mushroom');
 
 -- --------------------------------------------------------
 
@@ -211,14 +202,20 @@ INSERT INTO `toppings` (`id`, `type`, `name`, `price`) VALUES
 (2, 'meat', 'beef', '0.20'),
 (3, 'meat', 'ham', '0.20'),
 (4, 'meat', 'chicken', '0.20'),
-(5, 'vegie', 'jalapeno peppers', '0.20'),
-(6, 'vegie', 'mushroom', '0.20'),
-(7, 'vegie', 'black olives', '0.20'),
-(8, 'vegie', 'pineapple', '0.20');
+(5, 'veggie', 'jalapeno peppers', '0.20'),
+(6, 'veggie', 'mushroom', '0.20'),
+(7, 'veggie', 'black olives', '0.20'),
+(8, 'veggie', 'pineapple', '0.20');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `credentials`
+--
+ALTER TABLE `credentials`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `crusts`
@@ -276,19 +273,13 @@ ALTER TABLE `crusts`
 -- AUTO_INCREMENT for table `hours`
 --
 ALTER TABLE `hours`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pizzas`
 --
 ALTER TABLE `pizzas`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sauces`

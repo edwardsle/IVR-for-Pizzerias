@@ -1,5 +1,8 @@
 <?php require "connection.php" ?>
 <?php 
+// unprepared order
+// orders ready
+// all orders in the database
   $query_new_order = "SELECT * FROM `orders` JOIN `pizzas` ON orders.id = pizzas.orderid WHERE orders.status = 'prepare'";
   $new_order = mysqli_query($conn,$query_new_order);
 

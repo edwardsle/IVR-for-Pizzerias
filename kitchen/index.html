@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Pizza | Kitchen</title>
+	<style>
+		body {
+			font-size: 5em;
+		}
+		.orderid {
+			font-size: 1.2em;
+		}
+		.pizza-size {
+			font-size: 2em;
+			font-weight: 500;
+		}
+		.size-large {
+			color: #3772ff;
+		}
+		.size-medium {
+			color: #9d4edd;
+		}		
+		.size-small {
+			color: #f4a261;
+		}
+		.regular {
+			color: #386641;
+		}
+		.thin {
+			color: #bc4749;
+		}
+		.bbq {
+			color: #e76f51;
+		}
+		.alfredo {
+			color: #118ab2;
+		}
+	</style>
+  </head>
+  <body>
+    <main>
+		<div class="container-fluid">
+			<div class="row border border-3 border-secondary mb-3">
+				<div class="col-1 d-flex align-items-center justify-content-center orderid">5</div>
+				<div class="col-2 d-flex align-items-center justify-content-between border-start pizza-size"><span class="size-large">L</span>-<span class="regular">R</span></div>
+				<div class="col-9 border-start">
+					<div class="row border-bottom regular">Regular sauce</div>
+					<div class="row">Pepperoni, Chicken, Jalapeno</div>
+				</div>
+			</div>
+			<div class="row border border-3 border-secondary mb-3">
+				<div class="col-1 d-flex align-items-center justify-content-center orderid">5</div>
+				<div class="col-2 d-flex align-items-center justify-content-between border-start pizza-size"><span class="size-medium">M</span>-<span class="thin">T</span></div>
+				<div class="col-9 border-start">
+					<div class="row border-bottom bbq">BBQ sauce</div>
+					<div class="row">Pepperoni, Beef, Mushroom</div>
+				</div>
+			</div>
+			<div class="row border border-3 border-secondary mb-3">
+				<div class="col-1 d-flex align-items-center justify-content-center orderid">6</div>
+				<div class="col-2 d-flex align-items-center justify-content-between border-start pizza-size"><span class="size-small ">S</span>-<span class="regular">R</span></div>
+				<div class="col-9 border-start">
+					<div class="row border-bottom alfredo">Alfredo sauce</div>
+					<div class="row">Pepperoni</div>
+				</div>
+			</div>
+		</div>
+	</main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
+  </body>
+</html>

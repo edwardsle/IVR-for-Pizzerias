@@ -3,7 +3,7 @@
   include_once 'Models/User.php';
   session_start();
   if(isset($_SESSION['is_login'])){
-    header('Location: http://localhost/cs597/sso/dashboard?userStillLogin');
+    header('Location: dashboard?userStillLogin');
   } else {
     // Instantiate DB & connect
     $database = new Database();
@@ -22,13 +22,13 @@
         $jwt = $user->find()['jwt'];
         $_SESSION['is_login'] = true;
         $_SESSION['jwt'] = $jwt; 
-        header('Location: http://localhost/cs597/sso/dashboard?userLoginSucessfully');
+        header('Location: dashboard?userLoginSucessfully');
       } else {
         $error = $user->find()['message'];
       }
     }
     if(isset($_REQUEST['redirectSignUp'])){
-      header('Location: http://localhost/cs597/sso/signUp');
+      header('Location: signUp');
     }
   }
   

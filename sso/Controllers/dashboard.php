@@ -1,5 +1,5 @@
 <?php
-  include_once '../vendor/autoload.php';
+  include_once 'vendor/autoload.php';
 
   use \Firebase\JWT\JWT;
 
@@ -8,9 +8,9 @@
   if(isset($_SESSION['is_login'])){
     if(isset($_REQUEST['logout'])){
         session_destroy();
-        header("Location: http://localhost/cs597/sso/");
+        header("Location: /sso");
     }
   } else {
-    header('Location: http://localhost/cs597/sso/');
+    header('Location: /sso');
   }
   
