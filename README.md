@@ -1,4 +1,4 @@
-# cs597 Project
+# Master Degree Final Project
 ## Demo:
 ### Single Sign On: https://sso.edwardsle.com/
 ### Website: https://shop.edwardsle.com/
